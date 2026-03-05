@@ -1,0 +1,42 @@
+# ======================================
+# Nexus-OS v1.1 — Docker Compose
+# 本地開發：一鍵啟動 Bot + PostgreSQL
+# ======================================
+
+services:
+
+  # ── PostgreSQL + pgvector ─────────────────────────────────────
+  db:
+    image: pgvector/pgvector:pg16 # 官方 pgvector 鏡像，內建 vector 擴充
+    container_name: nexus_db
+    environment:
+      POSTGRES_USER: nexus
+      POSTGRES_PASSWORD: nexuspass
+      POSTGRES_DB: nexus_os
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U nexus -d nexus_os" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ── Nexus-OS Bot ──────────────────────────────────────────────
+  bot:
+    build: .
+    container_name: nexus_bot
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env # 從 .env 載入所有環境變數
+    environment:
+      # 覆蓋 .env 中的 DATABASE_URL 以使用 Docker 內部網路
+      DATABASE_URL: postgresql+asyncpg://nexus:nexuspass@db:5432/nexus_os
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+    name: nexus_pgdata

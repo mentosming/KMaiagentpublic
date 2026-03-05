@@ -1,0 +1,64 @@
+# ==================================
+# Nexus-OS — .gitignore
+# ==================================
+
+# 環境變數（含機密金鑰，絕對不能上傳！）
+.env
+.env.local
+.env.*
+!.env.example
+
+# Python 快取
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.pyc
+.ipynb_checkpoints/
+.pytest_cache/
+.tox/
+.coverage
+htmlcov/
+
+# 虛擬環境
+venv/
+.venv/
+env/
+ENV/
+lib/
+lib64/
+
+# Node.js / Next.js
+node_modules/
+.next/
+out/
+build/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# 日誌
+*.log
+logs/
+
+# Google 憑證 & 敏感檔案
+credentials.json
+token.json
+service_account.json
+*.pem
+*.key
+
+# Docker & Volume
+pgdata/
+.docker-compose.db.data/

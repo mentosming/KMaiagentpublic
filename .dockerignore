@@ -1,0 +1,51 @@
+# Docker 建置時忽略的文件
+# 避免將機密、虛擬環境等不必要的文件打包進鏡像
+
+# 環境變數（絕對不能打包進鏡像！）
+.env
+*.env.local
+
+# Python 快取
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.pyc
+
+# 虛擬環境
+venv/
+.venv/
+env/
+.env/
+ENV/
+
+# IDE 設定
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Git
+.git/
+.gitignore
+
+# 測試與文檔
+*.md
+*.txt
+!requirements.txt
+
+# 語法檢查腳本（非生產代碼）
+_check_syntax.py
+
+# Docker 自身
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# macOS
+.DS_Store
+
+# 日誌
+*.log
+logs/
