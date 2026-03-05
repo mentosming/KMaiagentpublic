@@ -30,8 +30,8 @@
 
 ### 第一步：複製儲存庫與安裝依賴
 ```bash
-git clone https://github.com/your-username/kmpersonalAIagent.git
-cd kmpersonalAIagent
+git clone https://github.com/mentosming/KMaiagentpublic.git
+cd KMaiagentforpublic
 
 # 建立並啟動虛擬環境
 python -m venv .venv
